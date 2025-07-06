@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>gabriel vicari</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+            color: #222;
+        }
+        header {
+            background: #2d3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background: #1a2533;
+            display: flex;
+            justify-content: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 25px;
+            display: block;
+            transition: background 0.3s;
+        }
+        nav a:hover, nav a.active {
+            background: #3a5068;
+        }
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        h1, h2 {
+            color: #2d3e50;
+        }
+        .hidden {
+            display: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        button {
+            background: #2d3e50;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #1a2533;
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 10px;
+            }
+            nav a {
+                padding: 10px 10px;
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gabriel Vicari</h1>
+        <p>Portifílio Pessoal, Gabriel Vicari Minusculi</p>
+    </header>
+    <nav>
+        <a href="#" id="link-sobre" class="active">Sobre Mim</a>
+        <a href="#" id="link-formacao">Formação</a>
+        <a href="#" id="link-portfolio">Portfólio</a>
+        <a href="#" id="link-contato">Contato</a>
+    </nav>
+    <main>
+        <section id="sec-sobre">
+            <h2>Sobre Mim</h2>
+            <p>
+                Olá! eu sou Gabriel Vicari, e eu estou iniciando na programação. 
+                Eu gosto de ir para o interior da minha cidade onde eu consigo pescar e cuidar do gado.
+                E começei no curso de programação por conta das oportunidades de aprender e também do meu trabalho.
+            </p>
+        </section>
+        <section id="sec-formacao" class="hidden">
+            <h2>Formação & Idiomas</h2>
+            <ul>
+                <li><strong>Graduação:</strong> Análise e Desenvolvimento de sistemas e Tecnólogo em logística</li>
+                <li><strong>Idiomas:</strong> Português e Inglês (Iniciante)</li>
+
+            </ul>
+        </section>
+        <section id="sec-portfolio" class="hidden">
+            <h2>Portfólio</h2>
+            <ul>
+                <li>
+                    <a href="https://eleven.cash/login" target="_blank">Projeto da empresa</a> - Trabalho junto ao time de desenvimento da Imply onde sou consultor e QA da ElevenCash uma empresa da Imply.
+                </li>
+            </ul>
+        </section>
+        <section id="sec-contato" class="hidden">
+            <h2>Contato</h2>
+            <form autocomplete="off">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <script>
+        const links = {
+            'link-sobre': 'sec-sobre',
+            'link-formacao': 'sec-formacao',
+            'link-portfolio': 'sec-portfolio',
+            'link-contato': 'sec-contato'
+        };
+
+        Object.keys(links).forEach(linkId => {
+            document.getElementById(linkId).addEventListener('click', function(e) {
+                e.preventDefault();
+                Object.values(links).forEach(secId => {
+                    document.getElementById(secId).classList.add('hidden');
+                });
+                Object.keys(links).forEach(lid => {
+                    document.getElementById(lid).classList.remove('active');
+                });
+                document.getElementById(links[linkId]).classList.remove('hidden');
+                this.classList.add('active');
+            });
+        });
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mensagem enviada! (Simulação visual)');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
